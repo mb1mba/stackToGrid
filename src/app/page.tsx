@@ -44,19 +44,13 @@ const images = [
 export default function Home() {
   const [isGrid, setIsGrid] = useState(false);
 
-  const handleToggle = ():boolean => 
-  {
-     setIsGrid(grid => !grid)
-     return isGrid;
-  }
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 overflow-hidden">
-      <CloseButton handleToggle={handleToggle} />
+      <CloseButton onClick={() => setIsGrid(false)} isGrid={isGrid} />
       {
         isGrid 
         ? <Grid images={images} />           
-        : <Stack images={images} onClick={handleToggle}/>
+        : <Stack images={images} onClick={() => setIsGrid(true)}/>
       }
     </main>
   );
